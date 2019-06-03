@@ -27,7 +27,7 @@ export class OrderListComponent implements OnInit {
     this.openDialog(this.allOrders.length + 1, null);
   }
 
-  editItem(orderNumber, editItem) {
+  editItem(orderNumber, editItem) : void {
     this.openDialog(orderNumber, editItem);
   }
 

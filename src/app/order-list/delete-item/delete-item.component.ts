@@ -13,7 +13,7 @@ export class DeleteItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteItem(data) {
+  deleteItem(data) : void {
     this.dialogRef.close(data);
   }
 }
