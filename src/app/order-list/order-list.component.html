@@ -1,55 +1,57 @@
-<div class="bg-secondary text-white d-flex justify-content-center">
-    <h1>ORDERS LIST</h1>
+<div class="bg-dark text-white d-flex align-items-center justify-content-between p-2">
+    <h4>Hi {{loginUser}}</h4>
+    <h3>ORDERS LIST</h3>
+    <button class="btn text-white" [routerLink]="['/']"> LOGOUT </button>
 </div>
-<mat-card class="m-3 p-0 bg-primary text-white">
+<mat-card class="m-3 p-0 bg-secondary text-white">
     <div class="d-flex justify-content-between align-items-center p-2">
         <h4>Place your order here</h4>
-        <button (click)="addItem()" class="btn btn-primary">Add</button>
+        <button (click)="addItem()" class="btn btn-info">Add</button>
     </div>
     <div class='overflow-auto'>
-        <table mat-table [dataSource]="dataSource" class="order--table">
+        <table mat-table [dataSource]="dataSource" class="w-100">
             <ng-container matColumnDef="orderNumber">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"><b> Order Number </b> </th>
-                <td mat-cell *matCellDef="let element; let i = index;">
+                <th mat-header-cell *matHeaderCellDef><strong> Order Number </strong> </th>
+                <td mat-cell *matCellDef="let element">
                     {{element.orderNumber}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="customerName">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"> Customer Buyer name </th>
+                <th mat-header-cell *matHeaderCellDef ><strong> Customer Buyer name </strong> </th>
                 <td mat-cell *matCellDef="let element">
                     {{element.customerName}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="orderDueDate">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"> Order Due Date </th>
+                <th mat-header-cell *matHeaderCellDef ><strong> Order Due Date  </strong></th>
                 <td mat-cell *matCellDef="let element">
                     {{element.orderDueDate}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="customerAddress">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"> Customer Address </th>
+                <th mat-header-cell *matHeaderCellDef ><strong> Customer Address </strong> </th>
                 <td mat-cell *matCellDef="let element">
                     {{element.customerAddress}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="customerPhone">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"> Customer Phone </th>
+                <th mat-header-cell *matHeaderCellDef ><strong> Customer Phone</strong> </th>
                 <td mat-cell *matCellDef="let element">
                     {{element.customerPhone}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="orderTotal">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"> OrderTotal (total value of order)
+                <th mat-header-cell *matHeaderCellDef > <strong>OrderTotal (total value of order)</strong>
                 </th>
                 <td mat-cell *matCellDef="let element">
                     {{element.orderTotal}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="modify">
-                <th mat-header-cell *matHeaderCellDef class="bg-secondary text-white"></th>
+                <th mat-header-cell *matHeaderCellDef ></th>
                 <td mat-cell *matCellDef="let element; let i = index;">
                     <div class="d-flex justify-content-around">
-                        <button class='btn btn-secondary text-white d-flex align-items-center' (click)='editItem(i + 1, element)'>
+                        <button class='btn btn-secondary text-white d-flex align-items-center' (click)='editItem(element)'>
                             Edit </button>
                         <button class='btn btn-danger text-white d-flex align-items-center' (click)='deleteItem(i)'>
                             Delete </button>

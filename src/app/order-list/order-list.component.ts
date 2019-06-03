@@ -13,6 +13,7 @@ export class OrderListComponent implements OnInit {
   dataSource; allOrders: any;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayColumns = ['orderNumber', 'customerName', 'orderDueDate', 'customerAddress', 'customerPhone', 'orderTotal', 'modify'];
+  loginUser: string;
   constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -21,37 +22,36 @@ export class OrderListComponent implements OnInit {
       this.dataSource = new MatTableDataSource<orderList>(this.allOrders);
       this.dataSource.paginator = this.paginator;
     });
+    this.loginUser = sessionStorage.getItem('loginUser');
   }
 
   addItem(): void {
-    this.openDialog(this.allOrders.length + 1, null);
+    this.openDialog(null);
   }
 
-  editItem(orderNumber, editItem) : void {
-    this.openDialog(orderNumber, editItem);
+  editItem(editItem) : void {
+    this.openDialog(editItem);
   }
 
-  openDialog(orderNumber, editItem): void {
+  openDialog(editItem): void {
     const dialogRef = this.dialog.open(AddItemComponent, {
       width: '60%',
       height: 'auto',
-      disableClose: true,
       data: {
-        orderNumber: orderNumber,
         editItem: editItem
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       let newItem = true;
-      for (let a = 1; a < this.allOrders.length; a++) {
+      for (let a = 0; a < this.allOrders.length; a++) {
         if (result['orderNumber'] === this.allOrders[a]['orderNumber']) {
-          this.allOrders[a] = result['newItem'];
+          this.allOrders[a] = result;
           newItem = false;
         }
       }
       if (newItem) {
-        this.allOrders.push(result['newItem']);
+        this.allOrders.unshift(result);
       }
       this.dataSource = new MatTableDataSource<orderList>(this.allOrders);
       this.dataSource.paginator = this.paginator;

@@ -51,6 +51,7 @@ export class UserLoginComponent implements OnInit {
         if (this.loginForm.value['remindMe']) {
           localStorage.setItem('userdetails', JSON.stringify(this.loginForm.value));
         }
+        sessionStorage.setItem('loginUser', JSON.stringify(this.loginForm.value['username']));
         this.router.navigateByUrl('/order');
       } else {
         this.InvalidUser = false;

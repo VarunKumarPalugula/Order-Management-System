@@ -14,7 +14,7 @@ export class AddItemComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AddItemComponent>,
     private formBuilder: FormBuilder) {
     this.newItem = this.formBuilder.group({
-      orderNumber: [ this.data['orderNumber'], Validators.required],
+      orderNumber: ['', Validators.required],
       customerName: ['', Validators.required],
       orderDueDate: ['', Validators.required],
       customerAddress: ['', Validators.required],
@@ -36,9 +36,6 @@ export class AddItemComponent implements OnInit {
     }
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
 
   get input(): any {
     return this.newItem.controls;
@@ -46,14 +43,11 @@ export class AddItemComponent implements OnInit {
 
   onSubmit(): boolean {
     this.submitted = true;
-    if (this.newItem.value['customerName'] === '') {
+    if (this.newItem.value['customerName'] === '' || this.newItem.value['orderNumber'] === '') {
       return;
     }
-    const finalData = {
-      orderNumber: this.data.orderNumber,
-      newItem: this.newItem.value
-    };
-    this.dialogRef.close(finalData);
+    console.log(this.newItem.value)
+    this.dialogRef.close(this.newItem.value);
   }
 
 

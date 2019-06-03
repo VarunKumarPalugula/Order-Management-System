@@ -5,12 +5,13 @@ import { OrderListComponent } from './order-list/order-list.component';
 
 const routes: Routes = [
   { path: 'order', component: OrderListComponent  },
-  { path: '',  component: UserLoginComponent }
-  // { path: '',  redirectTo: 'home', pathMatch: 'full', component: UserLoginComponent }
+  { path: 'login',  component: UserLoginComponent },
+  { path: '',  redirectTo: 'login', pathMatch: 'full' },
+  { path:'**',  redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
