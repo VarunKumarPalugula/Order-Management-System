@@ -9,7 +9,7 @@
           <span> Invalid user name or password </span>
         </div>
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Username <sup class="text-danger">*</sup> </label>
           <input type="text" formControlName="username" class="form-control" (change)="checkUser()"
             [ngClass]="{ 'is-invalid': submitted && input.username.errors }" />
           <div *ngIf="submitted && input.username.errors" class="invalid-feedback">
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Password <sup class="text-danger">*</sup></label>
           <input type="password" formControlName="password" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && input.password.errors }" />
           <div *ngIf="submitted && input.password.errors" class="invalid-feedback">

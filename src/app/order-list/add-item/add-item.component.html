@@ -3,7 +3,7 @@
   </div>
   <form class="p-2" [formGroup]="newItem" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="orderNumber"> Order Number</label>
+      <label for="orderNumber"> Order Number <sup class="text-danger">*</sup></label>
       <input type="number" formControlName="orderNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && input.orderNumber.errors }"
       />
       <div *ngIf="submitted && input.orderNumber.errors" class="invalid-feedback">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="customerName"> Customer Buyer name</label>
+      <label for="customerName"> Customer Buyer name <sup class="text-danger">*</sup></label>
       <input type="username" formControlName="customerName" class="form-control" [ngClass]="{ 'is-invalid': submitted && input.customerName.errors }"
       />
       <div *ngIf="submitted && input.customerName.errors" class="invalid-feedback">
