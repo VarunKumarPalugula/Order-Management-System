@@ -4,7 +4,7 @@
   <form class="p-2" [formGroup]="newItem" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="orderNumber"> Order Number <sup class="text-danger">*</sup></label>
-      <input type="number" formControlName="orderNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && input.orderNumber.errors }"
+      <input [attr.disabled]="data.editItem ? '' : null" type="number" formControlName="orderNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && input.orderNumber.errors }"
       />
       <div *ngIf="submitted && input.orderNumber.errors" class="invalid-feedback">
         <div *ngIf="input.orderNumber.errors.required">Password is required</div>

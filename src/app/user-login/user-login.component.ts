@@ -45,7 +45,6 @@ export class UserLoginComponent implements OnInit {
       return;
     }
     for (let a = 0; a < this.loginDetails.length; a++) {
-      console.log(this.loginDetails, this.loginForm.value);
       if (this.loginDetails[a]['username'] === this.loginForm.value['username']
         && this.loginDetails[a]['password'] === this.loginForm.value['password']) {
         if (this.loginForm.value['remindMe']) {

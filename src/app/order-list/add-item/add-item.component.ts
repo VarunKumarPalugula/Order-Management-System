@@ -46,7 +46,6 @@ export class AddItemComponent implements OnInit {
     if (this.newItem.value['customerName'] === '' || this.newItem.value['orderNumber'] === '') {
       return;
     }
-    console.log(this.newItem.value)
     this.dialogRef.close(this.newItem.value);
   }
 

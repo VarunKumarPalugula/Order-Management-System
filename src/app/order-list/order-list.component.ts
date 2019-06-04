@@ -29,7 +29,7 @@ export class OrderListComponent implements OnInit {
     this.openDialog(null);
   }
 
-  editItem(editItem) : void {
+  editItem(editItem): void {
     this.openDialog(editItem);
   }
 
@@ -44,17 +44,19 @@ export class OrderListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       let newItem = true;
-      for (let a = 0; a < this.allOrders.length; a++) {
-        if (result['orderNumber'] === this.allOrders[a]['orderNumber']) {
-          this.allOrders[a] = result;
-          newItem = false;
+      if (result) {
+        for (let a = 0; a < this.allOrders.length; a++) {
+          if (result['orderNumber'] === this.allOrders[a]['orderNumber']) {
+            this.allOrders[a] = result;
+            newItem = false;
+          }
         }
+        if (newItem) {
+          this.allOrders.unshift(result);
+        }
+        this.dataSource = new MatTableDataSource<orderList>(this.allOrders);
+        this.dataSource.paginator = this.paginator;
       }
-      if (newItem) {
-        this.allOrders.unshift(result);
-      }
-      this.dataSource = new MatTableDataSource<orderList>(this.allOrders);
-      this.dataSource.paginator = this.paginator;
     });
   }
 
